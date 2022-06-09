@@ -4,8 +4,8 @@ public class BankAccount {
     private double checkingBalance;
     private double savingsBalance;
     private String accountNumber;
-    public static int numberOfAccounts=0;
-    public static int totalAmountOfMoney=0;
+    private static int numberOfAccounts=0;
+    private static double totalAmountOfMoney=0;
 
 // CONSTRUCTOR
     public BankAccount() {
@@ -20,11 +20,11 @@ public class BankAccount {
         this.savingsBalance=saving1;
         numberOfAccounts++;
         this.accountNumber=createAccountNumber();
+        totalAmountOfMoney+=checking1+saving1;
     }
 
 // GETTER (read) & SETTER (write)
     public double getChecking(){
-        // System.out.println(this.checkingBalance);
         return this.checkingBalance;
     }
 
@@ -34,7 +34,6 @@ public class BankAccount {
     // }
 
     public double getSaving(){
-        // System.out.println(this.savingsBalance);
         return this.savingsBalance;
     
     }
@@ -45,10 +44,10 @@ public class BankAccount {
     // }
 
     public void depositMoney(double amount, String location) {
-        if (location == "checking"){
+        if (location.equals("checking")){
             this.checkingBalance += amount;
             totalAmountOfMoney += amount;
-        } else if(location == "savings"){
+        } else if(location.equals("savings")){
             this.savingsBalance += amount;
             totalAmountOfMoney += amount;
         } else{
@@ -57,14 +56,14 @@ public class BankAccount {
     }
 
     public void withdrawalMoney(double amount, String location) {
-        if (location == "checking"){
+        if (location.equals("checking")){
             if(this.checkingBalance < amount){
                 System.out.println("insufficient funds!");
             } else{
                 this.checkingBalance -= amount;
                 totalAmountOfMoney -= amount;
             }
-        }else if(location == "savings"){
+        }else if(location.equals("savings")){
             if(this.savingsBalance < amount){
                 System.out.println("insufficient funds!");
             } else{
@@ -90,7 +89,6 @@ public class BankAccount {
     }
 
     public String getAccountNumber(){
-        // System.out.println(this.accountNumber);
         return this.accountNumber;
     }
 }
